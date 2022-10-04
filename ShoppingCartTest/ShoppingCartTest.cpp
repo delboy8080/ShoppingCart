@@ -18,6 +18,15 @@ namespace ShoppingCartTest
 			Book* b = new Book("The associate", 9.99);
 			ShoppingCart cart;
 			Assert::IsTrue(cart.addBook(b));
+			delete b;
+			b = nullptr;
+		}
+
+		TEST_METHOD(TestAddNoBook)
+		{
+			Book* b = nullptr;
+			ShoppingCart c;
+			Assert::IsFalse(c.addBook(b));
 		}
 	};
 }
