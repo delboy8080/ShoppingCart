@@ -11,22 +11,58 @@ namespace ShoppingCartTest
 {
 	TEST_CLASS(ShoppingCartTest)
 	{
+		Book* b1, *b2, *b3;
 	public:
-		
+		TEST_METHOD_INITIALIZE(setup)
+		{
+			b1 = new Book("The associate", 9.99);
+			b2 = new Book("The Partner", 19.99);
+			b3 = new Book("The Judges List", 19.99);
+		}
+
+		TEST_METHOD_CLEANUP(teardown)
+		{
+			delete b1;
+			delete b2;
+			delete b3;
+
+		}
 		TEST_METHOD(TestAddBook)
 		{
-			Book* b = new Book("The associate", 9.99);
 			ShoppingCart cart;
-			Assert::IsTrue(cart.addBook(b));
-			delete b;
-			b = nullptr;
+			Assert::IsTrue(cart.addBook(b1));	
 		}
 
 		TEST_METHOD(TestAddNoBook)
 		{
-			Book* b = nullptr;
 			ShoppingCart c;
-			Assert::IsFalse(c.addBook(b));
+			Assert::IsFalse(c.addBook(nullptr));
+		}
+
+		TEST_METHOD(testAddAllWithnullptrInList)
+		{
+			ShoppingCart c;
+			list<Book*> books;
+			books.push_back(b1);
+			books.push_back(b2);
+			books.push_back(nullptr);
+			Assert::AreEqual(2, c.addAllBooks(books));
+		}
+		TEST_METHOD(testAddAllWithBooksList)
+		{
+			ShoppingCart c;
+			list<Book*> books;
+			books.push_back(b1);
+			books.push_back(b2);
+			books.push_back(b3);
+			Assert::AreEqual(3, c.addAllBooks(books));
+		}
+		TEST_METHOD(testAddAllWithEmptyList)
+		{
+			ShoppingCart c;
+			list<Book*> books;
+			Assert::AreEqual(0, c.addAllBooks(books));
+
 		}
 	};
 }

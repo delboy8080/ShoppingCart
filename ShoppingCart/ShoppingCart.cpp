@@ -9,3 +9,19 @@ bool ShoppingCart::addBook(Book* b)
 	}
 	return false;
 }
+
+int ShoppingCart::addAllBooks(list<Book*> b)
+{
+	int count = 0;
+
+	for (list<Book*>::iterator iter = b.begin(); iter != b.end(); iter++)
+	{
+		if (*iter != nullptr)
+		{
+			books.push_back(*iter);
+			count++;
+		}
+	}
+
+	return count;
+}

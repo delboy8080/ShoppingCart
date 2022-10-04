@@ -8,5 +8,6 @@ class ShoppingCart
 	list<Book*> books;
 public:
 	bool addBook(Book* b);
+	int addAllBooks(list<Book*> b);
 };
 
