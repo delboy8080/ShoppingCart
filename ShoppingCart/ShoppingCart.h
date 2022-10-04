@@ -9,5 +9,7 @@ class ShoppingCart
 public:
 	bool addBook(Book* b);
 	int addAllBooks(list<Book*> b);
+	int size();
+	bool remove(Book* b);
 };
 

@@ -25,3 +25,11 @@ int ShoppingCart::addAllBooks(list<Book*> b)
 
 	return count;
 }
+bool ShoppingCart::remove(Book* b)
+{
+	return false;
+}
+int ShoppingCart::size()
+{
+	return books.size();
+}

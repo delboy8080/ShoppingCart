@@ -47,6 +47,7 @@ namespace ShoppingCartTest
 			books.push_back(b2);
 			books.push_back(nullptr);
 			Assert::AreEqual(2, c.addAllBooks(books));
+			Assert::AreEqual(2, c.size());
 		}
 		TEST_METHOD(testAddAllWithBooksList)
 		{
@@ -56,13 +57,44 @@ namespace ShoppingCartTest
 			books.push_back(b2);
 			books.push_back(b3);
 			Assert::AreEqual(3, c.addAllBooks(books));
+			Assert::AreEqual(3, c.size());
 		}
 		TEST_METHOD(testAddAllWithEmptyList)
 		{
 			ShoppingCart c;
 			list<Book*> books;
 			Assert::AreEqual(0, c.addAllBooks(books));
+			Assert::AreEqual(0, c.size());
 
+		}
+
+		TEST_METHOD(TestRemoveNull)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			Assert::AreEqual(2, c.size());
+			Assert::IsFalse(c.remove(nullptr));
+			Assert::AreEqual(2, c.size());
+		}
+		TEST_METHOD(TestRemoveBook)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			Assert::AreEqual(2, c.size());
+			Assert::IsTrue(c.remove(b1));
+			Assert::AreEqual(1, c.size());
+		}
+
+		TEST_METHOD(TestRemoveBookNotFound)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			Assert::AreEqual(2, c.size());
+			Assert::IsFalse(c.remove(b3));
+			Assert::AreEqual(2, c.size());
 		}
 	};
 }
