@@ -6,5 +6,7 @@
 class ShoppingCart
 {
 	list<Book*> books;
+public:
+	bool addBook(Book* b);
 };
 

@@ -29,5 +29,8 @@
     <ClCompile Include="ShoppingCart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MAin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
