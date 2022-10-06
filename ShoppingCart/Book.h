@@ -9,7 +9,7 @@ class Book
 public:
 	Book(string title, double price);
 	string getTitle();
-	double getPrice();
+	double getPrice() const;
 	void setTitle(string title);
 	void setPrice(double price);
 	~Book();

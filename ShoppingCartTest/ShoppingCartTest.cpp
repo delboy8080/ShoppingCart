@@ -96,5 +96,44 @@ namespace ShoppingCartTest
 			Assert::IsFalse(c.remove(b3));
 			Assert::AreEqual(2, c.size());
 		}
+		TEST_METHOD(TestGetSubtotalEmpty)
+		{
+			ShoppingCart c;
+			Assert::AreEqual(0, c.size());
+			Assert::AreEqual(0.00, c.getSubtotal(), 0.01);
+		}
+		TEST_METHOD(TestGetSubtotalOneBook)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			Assert::AreEqual(1, c.size());
+			Assert::AreEqual(9.99, c.getSubtotal(), 0.01);
+			
+		}
+		TEST_METHOD(TestGetSubtotalTwoBook)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			Assert::AreEqual(2, c.size());
+			Assert::AreEqual(29.98, c.getSubtotal(), 0.01);
+		}
+
+		TEST_METHOD(testCheckoutNoItems)
+		{
+			ShoppingCart c;
+			auto func =  [&c] {c.checkout(); };
+			Assert::ExpectException<logic_error>
+				(func, L"Derek, Error Not Thrown");
+		}
+		TEST_METHOD(testCheckoutMultiple)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			Assert::AreEqual(2, c.size(), L"Not enough books in cart");
+			Assert::IsTrue(c.checkout(), L"Checkout returned false");
+			Assert::AreEqual(0, c.size(), L"Books not removed");
+		}
 	};
 }

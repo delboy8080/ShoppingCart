@@ -9,7 +9,7 @@ string Book::getTitle()
 {
 	return title;
 }
-double Book::getPrice()
+double Book::getPrice()const
 {
 	return price;
 }
@@ -17,7 +17,7 @@ void Book::setTitle(string title)
 {
 	this->title = title;
 }
-void Book::setPrice(double price)
+void Book::setPrice(double price) 
 {
 	this->price = price;
 }
