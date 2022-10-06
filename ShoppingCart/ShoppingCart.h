@@ -13,5 +13,6 @@ public:
 	bool remove(Book* b);
 	double getSubtotal();
 	bool checkout();
+	bool isEmpty();
 };
 

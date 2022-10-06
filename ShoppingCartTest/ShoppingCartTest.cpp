@@ -135,5 +135,18 @@ namespace ShoppingCartTest
 			Assert::IsTrue(c.checkout(), L"Checkout returned false");
 			Assert::AreEqual(0, c.size(), L"Books not removed");
 		}
+
+		TEST_METHOD(testIsEmpty)
+		{
+			ShoppingCart c;
+			Assert::IsTrue(c.isEmpty());
+		}
+
+			TEST_METHOD(testIsNotEmpty)
+			{
+				ShoppingCart c;
+				c.addBook(b1);
+				Assert::IsFalse(c.isEmpty());
+			}
 	};
 }

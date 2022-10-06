@@ -61,3 +61,8 @@ bool ShoppingCart::checkout()
 	books.clear();
 	return true;
 }
+
+bool ShoppingCart::isEmpty()
+{
+	return books.empty();
+}
