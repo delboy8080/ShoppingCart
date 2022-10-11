@@ -14,5 +14,6 @@ public:
 	double getSubtotal();
 	bool checkout();
 	bool isEmpty();
+	Book* getBookByTitle(string s);
 };
 

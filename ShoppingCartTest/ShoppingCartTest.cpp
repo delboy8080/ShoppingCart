@@ -7,6 +7,18 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+namespace Microsoft {
+	namespace VisualStudio {
+		namespace CppUnitTestFramework
+		{
+			template<> static std::wstring ToString<Book>(const Book& b)
+			{
+				return L"Book";
+			};
+		}
+	}
+}
+
 namespace ShoppingCartTest
 {
 	TEST_CLASS(ShoppingCartTest)
@@ -142,11 +154,34 @@ namespace ShoppingCartTest
 			Assert::IsTrue(c.isEmpty());
 		}
 
-			TEST_METHOD(testIsNotEmpty)
-			{
-				ShoppingCart c;
-				c.addBook(b1);
-				Assert::IsFalse(c.isEmpty());
-			}
+		TEST_METHOD(testIsNotEmpty)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			Assert::IsFalse(c.isEmpty());
+		}
+
+		TEST_METHOD(testValidBook)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			c.addBook(b3);
+			Book* bookRet = c.getBookByTitle("The Partner");
+			Assert::IsNotNull(bookRet);
+			Assert::AreSame(*bookRet, *b2);
+		}
+		TEST_METHOD(testInValidBook)
+		{
+			ShoppingCart c;
+			c.addBook(b1);
+			c.addBook(b2);
+			c.addBook(b3);
+			Book* bookRet = c.getBookByTitle("Sparring Partners");
+			Assert::IsNull(bookRet);
+			
+
+		}
+
 	};
 }

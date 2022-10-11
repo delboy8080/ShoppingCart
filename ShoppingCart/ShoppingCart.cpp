@@ -66,3 +66,15 @@ bool ShoppingCart::isEmpty()
 {
 	return books.empty();
 }
+
+Book* ShoppingCart::getBookByTitle(string s)
+{
+	for (list<Book*>::iterator iter = books.begin();
+		iter != books.end(); iter++)
+	{
+		Book b = *(*iter);
+		if (s == b.getTitle())
+			return *iter;
+	}
+	return nullptr;
+}
